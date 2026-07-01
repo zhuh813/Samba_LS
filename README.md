@@ -10,22 +10,4 @@
 - **Windows 客戶端**：Windows Server 2016
 - **Linux 客戶端**：Ubuntu Desktop 24.04.4 Desktop
 
-```mermaid
-graph LR
-    subgraph VMnet8 [VMware VMnet8 NAT 網路 192.168.132.0/24]
-        direction LR
-        Win["Windows Server<br>(客戶端)"]
-        UbuntuCli["Ubuntu Desktop<br>(客戶端)"]
-        UbuntuSrv["Ubuntu Server<br>(Samba伺服器端)"]
-    end
-
-    subgraph Shares [Samba 共享資料夾設定]
-        direction TB
-        S1["/var/shares (匿名唯讀)"]
-        S2["/var/update (匿名讀寫)"]
-        S3["/var/secret (密碼驗證 - amy)"]
-    end
-
-    Win -.->|網路芳鄰| Shares
-    UbuntuCli -.->|SMB掛載| Shares
-    UbuntuSrv ==>|提供服務| Shares
+![Samba伺服器架構拓樸](Samba_LS伺服器建置.png)
